@@ -6,10 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/users")
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users")
+     * @Route()
      */
     public function index(): Response
     {
@@ -17,7 +20,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/create")
+     * @Route("/create")
      */
     public function create(): Response
     {
@@ -25,7 +28,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/{id}")
+     * @Route("/{id}", requirements={"id": "[1-9][0-9]*"})
      */
     public function show($id): Response
     {
@@ -33,17 +36,17 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/{id}/update")
+     * @Route("/{id}/update", requirements={"id": "[1-9][0-9]*"})
      */
-    public function update(): Response
+    public function update($id): Response
     {
         return $this->render('user/update.html.twig');
     }
 
     /**
-     * @Route("/users/{id}/delete")
+     * @Route("/{id}/delete", requirements={"id": "[1-9][0-9]*"})
      */
-    public function delete(): Response
+    public function delete($id): Response
     {
         return $this->render('user/delete.html.twig');
     }
