@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,17 @@ class UserController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('user/index.html.twig');
+//        $data = [
+//            ['id' => 1, "firstName" => "<script>alert('XSS')</script>"],
+//            ['id' => 2, "firstName" => "Cédric"]
+//        ];
+
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $data = $repo->findAll();
+
+        return $this->render('user/index.html.twig', [
+            'users' => $data,
+        ]);
     }
 
     /**
@@ -32,7 +43,12 @@ class UserController extends AbstractController
      */
     public function show($id): Response
     {
-        return $this->render('user/show.html.twig');
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $data = $repo->find($id);
+
+        return $this->render('user/show.html.twig', [
+            'user' => $data,
+        ]);
     }
 
     /**

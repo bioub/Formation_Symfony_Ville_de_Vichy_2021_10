@@ -4,4 +4,25 @@
 
 {% block body %}
     <h2>Liste des users</h2>
+    <ul>
+        {#
+        {% if users is empty %}
+            <li>Pas d'utilisateurs, souhaitez-vous en créer un</li>
+        {% else %}
+            {% for user in users %}
+                <li>{{ user.firstName }}</li>
+            {% endfor %}
+        {% endif %}
+        #}
+
+        {% for user in users %}
+            <li>
+                <a href="{{ path('app_user_show', {'id': user.id}) }}">
+                    {{ user.firstName }}
+                </a>
+            </li>
+        {% else %}
+            <li>Pas d'utilisateurs, souhaitez-vous en <a href="{{ path('app_user_create') }}">créer un</a> ?</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
