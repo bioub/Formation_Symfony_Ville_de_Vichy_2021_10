@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tweet;
 use App\Form\TweetType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,7 @@ class TweetController extends AbstractController
 
     /**
      * @Route("/create")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function create(Request $request): Response
     {

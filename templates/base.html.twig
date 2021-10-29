@@ -14,6 +14,9 @@
         {% endblock %}
     </head>
     <body>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <div>Bonjour {{ app.user.firstName }} !</div>
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

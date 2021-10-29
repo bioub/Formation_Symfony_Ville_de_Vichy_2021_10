@@ -16,11 +16,17 @@ class DevFixtures extends Fixture
 
         $user1 = new User();
         $user1->setFirstName('Romain');
+        $user1->setUsername('romain');
+        $user1->setRoles(['ROLE_ADMIN']);
+        $user1->setPassword('$2y$13$hAZDLv2.6/pbF9WquNhnY.FPjxH5JTp.uBrYpMe5Cxqb7NNRQsHJW'); // toto
         $user1->setBirthdate(new \DateTime('1985-10-01'));
         $manager->persist($user1);
 
         $user2 = new User();
         $user2->setFirstName('Cédric');
+        $user2->setUsername('cedric');
+        $user2->setRoles(['ROLE_USER']);
+        $user2->setPassword('$2y$13$hAZDLv2.6/pbF9WquNhnY.FPjxH5JTp.uBrYpMe5Cxqb7NNRQsHJW'); // toto
         $manager->persist($user2);
 
         $tweet1 = new Tweet();
