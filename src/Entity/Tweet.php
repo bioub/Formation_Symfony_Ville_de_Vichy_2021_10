@@ -31,7 +31,7 @@ class Tweet
     private ?\DateTime $postedAt = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tweets", fetch="EAGER")
      */
     private ?User $author = null;
 

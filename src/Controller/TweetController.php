@@ -44,8 +44,10 @@ class TweetController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Insérer via Doctrine
+            $tweet = $form->getData();
+            $tweet->setAuthor($this->getUser());
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($form->getData()); // appel de pre-persist
+            $manager->persist($tweet); // appel de pre-persist
             $manager->flush(); // execute la requete
         }
 

@@ -12,4 +12,15 @@
         <b>Date de naissance : </b>
         {{ user.birthdate | date("d/m/Y") }}
     </p>
+
+    {% if user.tweets is not empty  %}
+    <p>
+        <b>Liste des tweets</b>
+    </p>
+        <ul>
+            {% for tweet in user.tweets %}
+            <li>{{ tweet.text }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
