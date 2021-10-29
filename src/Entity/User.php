@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+//    #[ORM\Id]
+//    #[ORM\GeneratedValue]
+//    #[ORM\Column(type:"integer")]
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -18,10 +21,16 @@ class User
      */
     private $id;
 
+//    #[ORM\Column(type:"string", length:40)]
     /**
      * @ORM\Column(type="string", length=40)
      */
     private $firstName;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private ?\DateTime $birthdate;
 
     public function getId(): ?int
     {
@@ -36,6 +45,18 @@ class User
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
 
         return $this;
     }

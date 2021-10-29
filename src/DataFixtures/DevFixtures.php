@@ -15,6 +15,7 @@ class DevFixtures extends Fixture
 
         $user1 = new User();
         $user1->setFirstName('Romain');
+        $user1->setBirthdate(new \DateTime('1985-10-01'));
         $manager->persist($user1);
 
         $user2 = new User();
