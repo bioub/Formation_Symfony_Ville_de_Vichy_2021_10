@@ -1,7 +1,31 @@
 {% extends 'base.html.twig' %}
+{#
+    Voir les autres valeurs possibles dans vendor/symfony/twig-bridge/Resources/views/Form :
+{% form_theme tweetForm 'bootstrap_5_layout.html.twig' %}
+#}
 
 {% block title %}Créer un tweet{% endblock %}
 
 {% block body %}
     <h2>Créer un tweet</h2>
+    {{ form_start(tweetForm, { attr: { id: 'my-form', novalidate: 'novalidate' } }) }}
+
+        {# {{ form_row(tweetForm.text) }} #}
+        <div>
+            <div>
+                {{ form_label(tweetForm.text) }}
+            </div>
+            <div>
+                {{ form_widget(tweetForm.text) }}
+            </div>
+            <div>
+                {{ form_errors(tweetForm.text) }}
+            </div>
+        </div>
+
+    <div>
+        <button>Créer</button>
+    </div>
+
+    {{ form_end(tweetForm) }}
 {% endblock %}

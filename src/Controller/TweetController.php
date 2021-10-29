@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Tweet;
+use App\Form\TweetType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,8 +35,20 @@ class TweetController extends AbstractController
     /**
      * @Route("/create")
      */
-    public function create(): Response
+    public function create(Request $request): Response
     {
-        return $this->render('tweet/create.html.twig');
+        $form = $this->createForm(TweetType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Insérer via Doctrine
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($form->getData()); // appel de pre-persist
+            $manager->flush(); // execute la requete
+        }
+
+        return $this->render('tweet/create.html.twig', [
+            'tweetForm' => $form->createView(),
+        ]);
     }
 }

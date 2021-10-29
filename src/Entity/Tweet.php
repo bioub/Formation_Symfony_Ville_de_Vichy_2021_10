@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\TweetRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TweetRepository::class)
  * @ORM\Table(name="`tweet`")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Tweet
 {
@@ -26,7 +28,7 @@ class Tweet
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $postedAt;
+    private ?\DateTime $postedAt = null;
 
     public function getId(): ?int
     {
@@ -57,5 +59,17 @@ class Tweet
         return $this;
     }
 
-
+    // Appelée automatique en pre-persist (avant un INSERT)
+    // PrePersist -> Lifecycle Hook (cf doc doctrine)
+    // Si Lifecycle Hook dans la class
+    // La classe elle même doit avoir l'annotation HasLifecycleCallbacks
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setDefaultPostedAt()
+    {
+        if (!$this->postedAt) {
+            $this->postedAt = new \DateTime('now');
+        }
+    }
 }
