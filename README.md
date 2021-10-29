@@ -24,8 +24,8 @@ Le contrôleur doit contenir 2 routes et les fichiers twig correspondants (affic
 
 | Méthode PHP | Path                 | Titre                                          |
 | ----------- | -------------------- | ---------------------------------------------- |
-| `index`     | `/users`             | Liste des tweets                               |
-| `create`    | `/users/create`      | Ajouter un tweet                               |
+| `index`     | `/tweets`             | Liste des tweets                               |
+| `create`    | `/tweets/create`      | Ajouter un tweet                               |
 
 ### Entity
 

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tweets{% endblock %}
+
+{% block body %}
+    <h2>Liste des tweets</h2>
+    {% for tweet in tweets %}
+        <p>
+            {{ tweet.text }}
+        </p>
+    {% endfor %}
+{% endblock %}
