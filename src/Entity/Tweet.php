@@ -30,6 +30,11 @@ class Tweet
      */
     private ?\DateTime $postedAt = null;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private ?User $author = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,5 +76,17 @@ class Tweet
         if (!$this->postedAt) {
             $this->postedAt = new \DateTime('now');
         }
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

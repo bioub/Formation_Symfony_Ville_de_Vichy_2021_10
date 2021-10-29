@@ -26,16 +26,19 @@ class DevFixtures extends Fixture
         $tweet1 = new Tweet();
         $tweet1->setText('lorem ipsum...');
         $tweet1->setPostedAt(new \DateTime('2021-10-29 08:46:54'));
+        $tweet1->setAuthor($user1);
         $manager->persist($tweet1);
 
         $tweet2 = new Tweet();
         $tweet2->setText('ABCDEGHIJK...');
-        $tweet1->setPostedAt(new \DateTime('2021-10-29 10:24:34'));
+        $tweet2->setPostedAt(new \DateTime('2021-10-29 10:24:34'));
+        // $tweet2->setAuthor($user2);
         $manager->persist($tweet2);
 
         $tweet3 = new Tweet();
         $tweet3->setText('djgdif gndugd idfgigndgi dufg iufd');
-        $tweet1->setPostedAt(new \DateTime('2021-10-29 11:54:2O'));
+        $tweet3->setPostedAt(new \DateTime('2021-10-29 11:54:2O'));
+        $tweet3->setAuthor($user1);
         $manager->persist($tweet3);
 
         $manager->flush();

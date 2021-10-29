@@ -7,8 +7,11 @@
     {% for tweet in tweets %}
         <p>
             {{ tweet.text }}
-            (posté le {{ tweet.postedAt | date('d/m/Y') }} à
+            (posté le {{ tweet.postedAt | date('d/m/Y', 'Europe/Paris') }} à
             {{ tweet.postedAt | date('h:i:s', 'Europe/Paris') }})
+            {% if tweet.author %}
+            par {{ tweet.author.firstName }}.
+            {% endif %}
         </p>
     {% endfor %}
 {% endblock %}
